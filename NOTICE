@@ -1,0 +1,10 @@
+heroui-vue
+Copyright (c) 2026 Pitiș Radu. Licensed under the MIT License (see LICENSE).
+
+This project is a Vue 3 port of HeroUI (https://heroui.com), based on
+@heroui/react 3.2.7:
+  Copyright 2025 NextUI Inc.
+  Licensed under the Apache License, Version 2.0 (see LICENSE-APACHE).
+The components were rewritten for Vue 3 and Reka UI; component structure, part
+names, props and behaviour follow @heroui/react. @heroui/styles is used as an
+unmodified dependency and keeps its own Apache-2.0 license.

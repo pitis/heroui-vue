@@ -2,11 +2,14 @@
   "name": "heroui-vue",
   "version": "3.2.7",
   "description": "HeroUI v3 components for Vue 3, built on Reka UI and the official @heroui/styles",
+  "license": "MIT",
   "repository": "github:pitis/heroui-vue",
   "type": "module",
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "NOTICE",
+    "LICENSE-APACHE"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",

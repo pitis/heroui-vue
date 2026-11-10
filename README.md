@@ -89,3 +89,7 @@ pnpm build && pnpm pack && gh release create v<version> heroui-vue-<version>.tgz
 ```
 
 `src/utils/bridge.ts` is the core: the element each Reka part renders through, which translates Reka's state attributes (`data-state="checked"`, `data-side`…) into the React Aria ones `@heroui/styles` selects on (`data-selected="true"`, `data-placement`, `data-entering`/`data-exiting`…).
+
+## License
+
+MIT (see `LICENSE`). Ported from [HeroUI](https://heroui.com) (`@heroui/react`), Apache-2.0, Copyright 2025 NextUI Inc.: see `NOTICE` and `LICENSE-APACHE`.
