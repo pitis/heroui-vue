@@ -1,0 +1,48 @@
+{
+  "name": "heroui-vue",
+  "version": "0.1.0",
+  "description": "HeroUI v3 components for Vue 3, built on Reka UI and the official @heroui/styles",
+  "repository": "github:pitis/heroui-vue",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite playground",
+    "build": "vite build && vue-tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=4.0.0",
+    "vue": ">=3.5.0"
+  },
+  "dependencies": {
+    "@heroui/styles": "^3.2.7",
+    "@internationalized/date": "^3.12.4",
+    "reka-ui": "^2.11.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vue/test-utils": "^2.5.1",
+    "happy-dom": "^21.0.4",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.7",
+    "vitest": "^5.1.0",
+    "vue": "^3.5.45",
+    "vue-tsc": "^3.3.14"
+  }
+}
