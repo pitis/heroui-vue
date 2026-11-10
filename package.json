@@ -20,7 +20,6 @@
   "scripts": {
     "dev": "vite playground",
     "build": "vite build && vue-tsc -p tsconfig.build.json",
-    "prepare": "npm run build",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest run"
   },

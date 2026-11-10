@@ -9,7 +9,8 @@
 ## Setup
 
 ```sh
-pnpm add github:pitis/heroui-vue @heroui/styles reka-ui @internationalized/date  # append #v0.1.0 to pin a release
+# prebuilt package from the GitHub release (see Releases for newer versions)
+pnpm add https://github.com/pitis/heroui-vue/releases/download/v0.1.0/heroui-vue-0.1.0.tgz @heroui/styles reka-ui @internationalized/date
 pnpm add -D tailwindcss @tailwindcss/vite
 ```
 
@@ -78,6 +79,12 @@ pnpm dev        # playground with a demo per component (playground/demos); ?only
 pnpm test       # mounts every demo and fails on any Vue warning; unit tests for the toast queue
 pnpm typecheck
 pnpm build      # dist/index.js + type declarations
+```
+
+Releasing: bump `version` in `package.json`, commit, then
+
+```sh
+pnpm build && pnpm pack && gh release create v<version> heroui-vue-<version>.tgz --generate-notes
 ```
 
 `src/utils/bridge.ts` is the core: the element each Reka part renders through, which translates Reka's state attributes (`data-state="checked"`, `data-side`…) into the React Aria ones `@heroui/styles` selects on (`data-selected="true"`, `data-placement`, `data-entering`/`data-exiting`…).
