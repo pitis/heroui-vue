@@ -4,13 +4,14 @@
 
 - **Styling** is the official [`@heroui/styles`](https://www.npmjs.com/package/@heroui/styles) package, unmodified. Every component renders the same classes, `data-slot`s and state attributes as `@heroui/react` 3.2.7, so HeroUI's themes, CSS variables and class overrides work unchanged.
 - **Behaviour and accessibility** come from [Reka UI](https://reka-ui.com) (the Vue counterpart of the React Aria layer HeroUI uses): keyboard navigation, focus management, ARIA, dismissal, positioning.
+- **Version** = the `@heroui/react` release it ports (3.2.7); `@heroui/styles` is pinned to the same version.
 - **API**: HeroUI's component and prop names (`<Card.Header>`, `variant`, `isDisabled`…), adapted to Vue idioms (`v-model`, slots, events).
 
 ## Setup
 
 ```sh
 # prebuilt package from the GitHub release (see Releases for newer versions)
-pnpm add https://github.com/pitis/heroui-vue/releases/download/v0.1.0/heroui-vue-0.1.0.tgz @heroui/styles reka-ui @internationalized/date
+pnpm add https://github.com/pitis/heroui-vue/releases/download/v3.2.7/heroui-vue-3.2.7.tgz @heroui/styles@3.2.7 reka-ui @internationalized/date
 pnpm add -D tailwindcss @tailwindcss/vite
 ```
 

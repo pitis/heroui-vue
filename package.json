@@ -1,6 +1,6 @@
 {
   "name": "heroui-vue",
-  "version": "0.1.0",
+  "version": "3.2.7",
   "description": "HeroUI v3 components for Vue 3, built on Reka UI and the official @heroui/styles",
   "repository": "github:pitis/heroui-vue",
   "type": "module",
@@ -28,7 +28,7 @@
     "vue": ">=3.5.0"
   },
   "dependencies": {
-    "@heroui/styles": "^3.2.7",
+    "@heroui/styles": "3.2.7",
     "@internationalized/date": "^3.12.4",
     "reka-ui": "^2.11.0"
   },
