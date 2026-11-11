@@ -20,5 +20,8 @@ export const itemTextKey: InjectionKey<Map<string, string>> = Symbol('heroui-ite
 // shortcut: duplicates the status-disabled utility; drop it if @heroui/styles also matches [data-disabled] on items
 export const DISABLED_ITEM_STYLE = { opacity: 'var(--disabled-opacity)', cursor: 'var(--cursor-disabled)', pointerEvents: 'none' } as const
 
-/** Set by Autocomplete.Filter (provided reactive): items whose text doesn't contain `query` are hidden. */
-export const collectionFilterKey: InjectionKey<{ query: string }> = Symbol('heroui-collection-filter')
+/** Set by Autocomplete.Filter (provided reactive): items whose text does not match `query` are hidden. */
+export const collectionFilterKey: InjectionKey<{
+  query: string
+  filter: (textValue: string, inputValue: string) => boolean
+}> = Symbol('heroui-collection-filter')

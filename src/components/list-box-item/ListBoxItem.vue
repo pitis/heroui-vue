@@ -24,7 +24,7 @@ const text = computed(() => props.textValue ?? slots.default?.().map(node => (ty
 
 // inside Autocomplete.Filter: hidden, and disabled so keyboard navigation skips it, when it doesn't match
 const filter = inject(collectionFilterKey, undefined)
-const matches = computed(() => !filter?.query || !!text.value?.toLocaleLowerCase().includes(filter.query.toLocaleLowerCase()))
+const matches = computed(() => !filter?.query || filter.filter(text.value ?? '', filter.query))
 
 const texts = inject(itemTextKey, undefined)
 watchEffect(() => text.value && texts?.set(props.id, text.value))
