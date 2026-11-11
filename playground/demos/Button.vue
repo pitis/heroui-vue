@@ -24,6 +24,9 @@ const variants = ['primary', 'secondary', 'tertiary', 'outline', 'ghost', 'dange
       <Spinner color="current" size="sm" /> Saving
     </Button>
     <CloseButton />
+    <Button as-child variant="outline">
+      <a href="#button">A link, styled as a button</a>
+    </Button>
     <ButtonGroup variant="secondary">
       <Button>One</Button>
       <ButtonGroup.Separator />
