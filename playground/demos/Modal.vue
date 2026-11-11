@@ -24,6 +24,7 @@ const controlled = ref(false)
             <Modal.CloseTrigger />
             <Modal.Header>
               <Modal.Heading>{{ example.label }} modal</Modal.Heading>
+              <Modal.Description>Read out with the heading when the modal opens.</Modal.Description>
             </Modal.Header>
             <Modal.Body>
               Focus is trapped inside. Press Escape or click outside to close.

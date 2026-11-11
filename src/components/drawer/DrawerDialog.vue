@@ -3,6 +3,7 @@ import type { ComponentPublicInstance } from 'vue'
 import { drawerVariants } from '@heroui/styles'
 import { DialogContent } from 'reka-ui'
 import { computed, inject, provide, useTemplateRef } from 'vue'
+import { useDialogDescription } from '../../utils/dialog-description'
 import { surfaceKey } from '../surface/context'
 import { drawerKey, drawerLayoutKey } from './context'
 import { useDrawerDrag } from './useDrawerDrag'
@@ -10,6 +11,7 @@ import { useDrawerDrag } from './useDrawerDrag'
 const drawer = inject(drawerKey)!
 const layout = inject(drawerLayoutKey, undefined)
 provide(surfaceKey, computed(() => 'default' as const))
+const described = useDialogDescription()
 
 const isDismissable = computed(() => layout?.value.isDismissable !== false)
 const dialog = useTemplateRef<ComponentPublicInstance>('dialog')
@@ -31,7 +33,7 @@ function onPointerDownOutside(event: Event) {
   <DialogContent
     ref="dialog"
     force-mount
-    :aria-describedby="undefined"
+    v-bind="described"
     data-slot="drawer-dialog"
     :class="drawerVariants({ placement: layout?.placement }).dialog()"
     :data-placement="layout?.placement"

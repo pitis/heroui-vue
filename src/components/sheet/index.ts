@@ -1,6 +1,7 @@
 import { sheetVariants } from '@heroui/styles'
 import { DialogClose, DialogTrigger } from 'reka-ui'
 import { defineComponent, h } from 'vue'
+import { dialogDescription } from '../../utils/dialog-description'
 import { part } from '../../utils/part'
 import SheetRoot from './Sheet.vue'
 import SheetBackdrop from './SheetBackdrop.vue'
@@ -17,6 +18,7 @@ const slots = sheetVariants()
 const SheetHeader = part('SheetHeader', 'div', 'sheet-header', slots.header())
 const SheetBody = part('SheetBody', 'div', 'sheet-body', slots.body())
 const SheetFooter = part('SheetFooter', 'div', 'sheet-footer', slots.footer())
+const SheetDescription = dialogDescription('SheetDescription', () => 'sheet-description')
 
 /** Makes its single child (e.g. a Button) open the sheet. */
 const SheetTrigger = defineComponent({ name: 'SheetTrigger', setup: (_, { slots }) => () => h(DialogTrigger, { asChild: true }, slots) })
@@ -35,10 +37,11 @@ const Sheet = Object.assign(SheetRoot, {
   Dialog: SheetDialog,
   Header: SheetHeader,
   Heading: SheetHeading,
+  Description: SheetDescription,
   Body: SheetBody,
   Footer: SheetFooter,
   Handle: SheetHandle,
   CloseTrigger: SheetCloseTrigger,
 })
 
-export { Sheet, SheetBackdrop, SheetBody, SheetClose, SheetCloseTrigger, SheetContent, SheetDialog, SheetFooter, SheetHandle, SheetHeader, SheetHeading, SheetNestedRoot, SheetRoot, SheetTrigger }
+export { Sheet, SheetBackdrop, SheetBody, SheetClose, SheetCloseTrigger, SheetContent, SheetDescription, SheetDialog, SheetFooter, SheetHandle, SheetHeader, SheetHeading, SheetNestedRoot, SheetRoot, SheetTrigger }

@@ -22,7 +22,7 @@ const deleted = ref(false)
                 <AlertDialog.Heading>Delete this project?</AlertDialog.Heading>
               </AlertDialog.Header>
               <AlertDialog.Body>
-                All files will be removed. This cannot be undone.
+                <AlertDialog.Description>All files will be removed. This cannot be undone.</AlertDialog.Description>
               </AlertDialog.Body>
               <AlertDialog.Footer>
                 <Button variant="tertiary" @click="close">
