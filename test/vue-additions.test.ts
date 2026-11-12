@@ -1,6 +1,6 @@
 import type { VNodeChild } from 'vue'
 import { flushPromises, mount } from '@vue/test-utils'
-import { AlertDialog, Autocomplete, Button, CloseButton, Disclosure, Drawer, ListBox, Modal, Popover, provideStrings, SearchField, Spinner } from 'heroui-vue'
+import { AlertDialog, Autocomplete, Button, Checkbox, CloseButton, Description, Disclosure, Drawer, ListBox, Modal, Popover, provideStrings, Radio, RadioGroup, SearchField, Spinner, Switch } from 'heroui-vue'
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import { defineComponent, h, nextTick } from 'vue'
 import { contains } from '../src/utils/filter'
@@ -148,4 +148,19 @@ test('provideStrings relabels the parts heroui-vue labels itself; a nested call 
   const Inner = Provider({ close: 'Închide' }, parts)
   await render(() => h(Provider({ loading: 'Se încarcă…', close: 'X' }, () => h(Inner))))
   expect(labels()).toEqual(['Se încarcă…', 'Închide'])
+})
+
+test('id and aria-* on a Switch, Checkbox or Radio name the control inside it; the rest stays on the root', async () => {
+  await render(() => [
+    h(Switch, { 'id': 'sw', 'aria-label': 'Email', 'data-testid': 'sw-root', 'class': 'extra' }, () => h(Switch.Content, () => h(Switch.Control, () => h(Switch.Thumb)))),
+    h(Checkbox, { 'aria-describedby': 'hint' }, () => [h(Checkbox.Content, () => h(Checkbox.Control, () => h(Checkbox.Indicator))), h(Description, () => 'Why')]),
+    h(RadioGroup, { 'modelValue': 'a', 'aria-label': 'Group' }, () => h(Radio, { 'value': 'a', 'aria-label': 'Option A' }, () => h(Radio.Content, () => 'A'))),
+  ])
+  const sw = document.querySelector('[role="switch"]')!
+  expect([sw.id, sw.getAttribute('aria-label')]).toEqual(['sw', 'Email'])
+  const root = document.querySelector('[data-slot="switch"]')!
+  expect([root.getAttribute('data-testid'), root.classList.contains('extra'), root.hasAttribute('aria-label'), root.id]).toEqual(['sw-root', true, false, ''])
+  // the checkbox keeps the description its field gives it, plus the one passed in
+  expect(document.querySelector('[role="checkbox"]')!.getAttribute('aria-describedby')!.split(' ')).toContain('hint')
+  expect(document.querySelector('[role="radio"]')!.getAttribute('aria-label')).toBe('Option A')
 })
