@@ -74,11 +74,14 @@ onBeforeUnmount(() => {
 
 <template>
   <Teleport to="body">
+    <!-- In the DOM from the start, as the polite live region the toasts are added to: a live
+         region inserted together with its first message is often not announced. A landmark only
+         while it holds toasts, so screen readers list no empty "Notifications". -->
     <div
-      v-if="toasts.length"
       ref="region"
-      role="region"
-      :aria-label="strings.notifications"
+      :role="toasts.length ? 'region' : undefined"
+      :aria-label="toasts.length ? strings.notifications : undefined"
+      aria-live="polite"
       tabindex="-1"
       data-slot="toast-region"
       :class="toastVariants({ placement }).region()"
