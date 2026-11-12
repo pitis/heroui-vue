@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useStrings } from '../../utils/strings'
 import { inject } from 'vue'
 import { useField } from '../../utils/field'
 import { CloseButton } from '../close-button'
@@ -6,6 +7,7 @@ import { searchFieldKey } from './context'
 
 const search = inject(searchFieldKey)!
 const field = useField()
+const strings = useStrings()
 
 function clear(event: MouseEvent) {
   search.clear()
@@ -18,7 +20,7 @@ function clear(event: MouseEvent) {
   <!-- slot="clear" is what the input's padding rule in @heroui/styles looks for; out of tab order like React Aria's -->
   <CloseButton
     slot="clear"
-    aria-label="Clear search"
+    :aria-label="strings.clearSearch"
     tabindex="-1"
     data-slot="search-field-clear-button"
     :class="search.slots.clearButton()"

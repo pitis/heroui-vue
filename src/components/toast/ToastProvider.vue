@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useStrings } from '../../utils/strings'
 import type { ToastPlacement } from './context'
 import type { QueuedToast, ToastQueue } from './queue'
 import { toastVariants } from '@heroui/styles'
@@ -6,6 +7,8 @@ import { computed, onBeforeUnmount, provide, reactive, shallowRef, toRef, useTem
 import { toastRegionKey } from './context'
 import { DEFAULT_GAP, toastQueue } from './queue'
 import ToastDefault from './ToastDefault.vue'
+
+const strings = useStrings()
 
 const props = withDefaults(defineProps<{
   placement?: ToastPlacement
@@ -75,7 +78,7 @@ onBeforeUnmount(() => {
       v-if="toasts.length"
       ref="region"
       role="region"
-      aria-label="Notifications (Alt+T)"
+      :aria-label="strings.notifications"
       tabindex="-1"
       data-slot="toast-region"
       :class="toastVariants({ placement }).region()"
