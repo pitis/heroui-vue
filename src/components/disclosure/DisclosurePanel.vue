@@ -4,6 +4,14 @@ import { disclosureKey } from './context'
 
 // Animates height through --disclosure-panel-height (0px ↔ measured px), the variable @heroui/styles transitions;
 // 'auto' once open so the content can grow, and `hidden` once closed so it leaves the tab order.
+defineProps<{
+  /**
+   * Vue-only: render the content only while the panel is open (or animating closed). By default it stays in
+   * the DOM, hidden, as in React Aria; set this when the content is heavy or loads data on mount.
+   */
+  unmountOnHide?: boolean
+}>()
+
 const disclosure = inject(disclosureKey)!
 const el = useTemplateRef<HTMLElement>('el')
 const open = disclosure.isExpanded
@@ -57,6 +65,6 @@ function onTransitionEnd(event: TransitionEvent) {
     :style="{ '--disclosure-panel-height': height }"
     @transitionend="onTransitionEnd"
   >
-    <slot />
+    <slot v-if="!unmountOnHide || !hidden" />
   </div>
 </template>

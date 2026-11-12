@@ -1,4 +1,5 @@
 import { popoverVariants } from '@heroui/styles'
+import { PopoverAnchor } from 'reka-ui'
 import { part } from '../../utils/part'
 import PopoverRoot from './Popover.vue'
 import PopoverArrow from './PopoverArrow.vue'
@@ -15,10 +16,12 @@ const PopoverHeading = part('PopoverHeading', 'h3', 'popover-heading', slots.hea
 const Popover = Object.assign(PopoverRoot, {
   Root: PopoverRoot,
   Trigger: PopoverTrigger,
+  // Vue-only: positions the popover against another element than the trigger, or with no trigger at all
+  Anchor: PopoverAnchor,
   Content: PopoverContent,
   Arrow: PopoverArrow,
   Dialog: PopoverDialog,
   Heading: PopoverHeading,
 })
 
-export { Popover, PopoverArrow, PopoverContent, PopoverDialog, PopoverHeading, PopoverRoot, PopoverTrigger }
+export { Popover, PopoverAnchor, PopoverArrow, PopoverContent, PopoverDialog, PopoverHeading, PopoverRoot, PopoverTrigger }

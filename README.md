@@ -59,6 +59,18 @@ Every component is exported both as a compound object (`Card`, with `Card.Header
 
 Picker composition is unchanged: a `ListBox` placed in `Select.Popover`, `ComboBox.Popover` or `Autocomplete.Filter` becomes that picker's list; a `Calendar` in `DatePicker.Popover` edits the picker's value; color components inside a `ColorPicker` share its color.
 
+## Vue-only additions
+
+Not in `@heroui/react`; each fills a gap the React version covers some other way.
+
+| Addition | What for |
+| --- | --- |
+| `Modal.Description`, `AlertDialog.Description`, `Drawer.Description`, `Sheet.Description` | The dialog's accessible description (`aria-describedby`, read with the heading). Without one the dialog has none, as before. |
+| `Popover.Anchor`; `Popover.Content` passes on Reka's events (`@open-auto-focus`, `@escape-key-down`, `@pointer-down-outside`…) | Position the popover against an element that is not its trigger (one opened on hover, say), and keep the focus where it is when it opens. |
+| `unmount-on-hide` on `Disclosure.Content` / `Accordion.Panel` | React Aria keeps a closed panel in the DOM, hidden; with this the content renders only while open, for content that is heavy or loads data. |
+| `as-child` on `Button` and `Disclosure.Trigger` | A `RouterLink` or `<a>` styled as a button (disabled, it gets `aria-disabled` and leaves the Tab order); your own `Button` as a disclosure's trigger. |
+| `filter` on `Autocomplete.Filter`: `(textValue, inputValue) => boolean` | React Aria's `filter`. The default ignores case and accents (React Aria's `useFilter({ sensitivity: 'base' }).contains`), so "bucuresti" finds "București". |
+
 ## Not ported
 
 Each of these is marked `shortcut:` in the source where it would go.

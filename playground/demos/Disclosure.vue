@@ -19,7 +19,8 @@ const faqs = [
           <Disclosure.Indicator />
         </Disclosure.Trigger>
       </Disclosure.Heading>
-      <Disclosure.Content>
+      <!-- unmount-on-hide: the body renders only while open -->
+      <Disclosure.Content unmount-on-hide>
         <Disclosure.Body>Vue 3.5+, Tailwind CSS v4 and a modern browser.</Disclosure.Body>
       </Disclosure.Content>
     </Disclosure>

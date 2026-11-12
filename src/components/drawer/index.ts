@@ -1,4 +1,5 @@
 import { drawerVariants } from '@heroui/styles'
+import { dialogDescription } from '../../utils/dialog-description'
 import { part } from '../../utils/part'
 import DrawerRoot from './Drawer.vue'
 import DrawerBackdrop from './DrawerBackdrop.vue'
@@ -16,6 +17,7 @@ const DrawerHeader = part('DrawerHeader', 'div', 'drawer-header', slots.header()
 // pan-y: the body scrolls instead of starting a drag
 const DrawerBody = part('DrawerBody', 'div', 'drawer-body', slots.body(), { style: { touchAction: 'pan-y' } })
 const DrawerFooter = part('DrawerFooter', 'div', 'drawer-footer', slots.footer())
+const DrawerDescription = dialogDescription('DrawerDescription', () => 'drawer-description')
 
 const Drawer = Object.assign(DrawerRoot, {
   Root: DrawerRoot,
@@ -25,10 +27,11 @@ const Drawer = Object.assign(DrawerRoot, {
   Dialog: DrawerDialog,
   Header: DrawerHeader,
   Heading: DrawerHeading,
+  Description: DrawerDescription,
   Body: DrawerBody,
   Footer: DrawerFooter,
   Handle: DrawerHandle,
   CloseTrigger: DrawerCloseTrigger,
 })
 
-export { Drawer, DrawerBackdrop, DrawerBody, DrawerCloseTrigger, DrawerContent, DrawerDialog, DrawerFooter, DrawerHandle, DrawerHeader, DrawerHeading, DrawerRoot, DrawerTrigger }
+export { Drawer, DrawerBackdrop, DrawerBody, DrawerCloseTrigger, DrawerContent, DrawerDescription, DrawerDialog, DrawerFooter, DrawerHandle, DrawerHeader, DrawerHeading, DrawerRoot, DrawerTrigger }
