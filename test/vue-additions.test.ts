@@ -1,6 +1,6 @@
 import type { VNodeChild } from 'vue'
 import { flushPromises, mount } from '@vue/test-utils'
-import { AlertDialog, Autocomplete, Button, Checkbox, CloseButton, Description, Disclosure, Drawer, ListBox, Modal, Popover, provideStrings, Radio, RadioGroup, SearchField, Spinner, Switch } from 'heroui-vue'
+import { AlertDialog, Autocomplete, Button, Checkbox, CloseButton, Description, Disclosure, Drawer, ListBox, Modal, Popover, provideStrings, Radio, RadioGroup, SearchField, Spinner, Switch, Toast, toast } from 'heroui-vue'
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import { defineComponent, h, nextTick } from 'vue'
 import { contains } from '../src/utils/filter'
@@ -163,4 +163,20 @@ test('id and aria-* on a Switch, Checkbox or Radio name the control inside it; t
   // the checkbox keeps the description its field gives it, plus the one passed in
   expect(document.querySelector('[role="checkbox"]')!.getAttribute('aria-describedby')!.split(' ')).toContain('hint')
   expect(document.querySelector('[role="radio"]')!.getAttribute('aria-label')).toBe('Option A')
+})
+
+test('the toast region is a polite live region before the first toast, and the toast is added to it', async () => {
+  await render(() => h(Toast.Provider))
+  const region = document.querySelector('[data-slot="toast-region"]')!
+  expect(region.getAttribute('aria-live')).toBe('polite')
+  // no empty landmark while it holds nothing
+  expect(region.hasAttribute('role')).toBe(false)
+
+  toast.success('Saved', { description: 'All good.' })
+  await flushPromises()
+  expect(region.getAttribute('role')).toBe('region')
+  expect(region.textContent).toContain('Saved')
+  // one live region, not one per toast: nothing is read twice
+  expect(region.querySelector('[role="status"], [aria-live]')).toBeNull()
+  toast.clear()
 })

@@ -56,6 +56,7 @@ Every component is exported both as a compound object (`Card`, with `Card.Header
 | Dates: `@internationalized/date` values | the same values |
 | Colors: `parseColor('#f00')` objects | hex/CSS strings or Reka color objects; Reka's helpers (`parseColor`, `colorToString`…) are re-exported |
 | `toast()` content: `ReactNode` | a string or a render function `() => h(…)` |
+| The toast region appears with the first toast; each toast is `role="status"` | `Toast.Provider` keeps the region in the DOM from the start as one polite live region (a landmark only while it holds toasts), and toasts are plain content in it: a live region inserted together with its first message is often not announced |
 
 Picker composition is unchanged: a `ListBox` placed in `Select.Popover`, `ComboBox.Popover` or `Autocomplete.Filter` becomes that picker's list; a `Calendar` in `DatePicker.Popover` edits the picker's value; color components inside a `ColorPicker` share its color.
 

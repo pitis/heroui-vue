@@ -71,7 +71,6 @@ watch(focusable, async (canFocus) => {
 <template>
   <div
     ref="el"
-    role="status"
     aria-atomic="true"
     data-slot="toast"
     :class="slots.toast()"
