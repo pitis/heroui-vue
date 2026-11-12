@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useStrings } from '../../utils/strings'
 import type { SpinnerVariants } from '@heroui/styles'
 import { spinnerVariants } from '@heroui/styles'
 import { useId } from 'vue'
@@ -7,10 +8,11 @@ defineProps<{ color?: SpinnerVariants['color'], size?: SpinnerVariants['size'] }
 
 // gradient ids must be unique per instance
 const id = useId()
+const strings = useStrings()
 </script>
 
 <template>
-  <span aria-label="Loading" data-slot="spinner" role="status" :class="spinnerVariants({ color, size })">
+  <span :aria-label="strings.loading" data-slot="spinner" role="status" :class="spinnerVariants({ color, size })">
     <svg aria-hidden="true" data-slot="spinner-icon" viewBox="0 0 24 24">
       <defs>
         <linearGradient :id="`${id}-1`" x1="50%" x2="50%" y1="5.271%" y2="91.793%">

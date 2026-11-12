@@ -70,6 +70,7 @@ Not in `@heroui/react`; each fills a gap the React version covers some other way
 | `unmount-on-hide` on `Disclosure.Content` / `Accordion.Panel` | React Aria keeps a closed panel in the DOM, hidden; with this the content renders only while open, for content that is heavy or loads data. |
 | `as-child` on `Button` and `Disclosure.Trigger` | A `RouterLink` or `<a>` styled as a button (disabled, it gets `aria-disabled` and leaves the Tab order); your own `Button` as a disclosure's trigger. |
 | `filter` on `Autocomplete.Filter`: `(textValue, inputValue) => boolean` | React Aria's `filter`. The default ignores case and accents (React Aria's `useFilter({ sensitivity: 'base' }).contains`), so "bucuresti" finds "București". |
+| `provideStrings({ close, closeNotification, notifications, clearSearch, removeTag, showSuggestions, loading, year })` | The labels heroui-vue writes itself (icon-only buttons, the spinner, the toast region, the year grid), which React Aria takes from the locale. English by default; call it once near the app's root, in any part a `provide` reaches. |
 
 ## Not ported
 

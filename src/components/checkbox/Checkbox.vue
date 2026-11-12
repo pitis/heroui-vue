@@ -5,6 +5,12 @@ import { computed, inject, provide, reactive } from 'vue'
 import { fieldStateAttrs, provideField } from '../../utils/field'
 import { checkboxGroupKey } from '../checkbox-group/context'
 import { checkboxKey } from './context'
+import { useRootAttrs } from '../../utils/control-attrs'
+
+defineOptions({ inheritAttrs: false })
+
+// id and aria-* name the control inside *.Content, the rest stays here (as in React Aria)
+const rootAttrs = useRootAttrs()
 
 const props = withDefaults(defineProps<{
   variant?: CheckboxVariants['variant']
@@ -61,7 +67,7 @@ provide(checkboxKey, {
     :class="checkboxVariants({ variant: variant ?? group?.variant.value }).base()"
     :data-selected="isSelected || undefined"
     :data-indeterminate="isIndeterminate || undefined"
-    v-bind="fieldStateAttrs(state)"
+    v-bind="{ ...rootAttrs(), ...fieldStateAttrs(state) }"
   >
     <slot :is-selected="isSelected" :is-indeterminate="isIndeterminate" />
   </div>

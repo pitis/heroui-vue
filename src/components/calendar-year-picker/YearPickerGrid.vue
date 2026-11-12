@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useStrings } from '../../utils/strings'
 import { calendarYearPickerVariants } from '@heroui/styles'
 import { computed, inject, nextTick, onMounted, provide, reactive, shallowRef, useTemplateRef, watch } from 'vue'
 import { calendarKey } from '../calendar/context'
 import { yearGridKey } from './context'
+
+const strings = useStrings()
 
 // Overlays the day grid while open; choosing a year moves the calendar to that year.
 const ctx = inject(calendarKey)!
@@ -64,7 +67,7 @@ provide(yearGridKey, reactive({
   <div
     ref="el"
     role="listbox"
-    aria-label="Year"
+    :aria-label="strings.year"
     tabindex="-1"
     data-slot="calendar-year-picker-grid"
     :class="calendarYearPickerVariants().yearGrid()"

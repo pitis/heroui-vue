@@ -4,6 +4,12 @@ import { switchVariants } from '@heroui/styles'
 import { computed, provide } from 'vue'
 import { fieldStateAttrs, provideField } from '../../utils/field'
 import { switchKey } from './context'
+import { useRootAttrs } from '../../utils/control-attrs'
+
+defineOptions({ inheritAttrs: false })
+
+// id and aria-* name the control inside *.Content, the rest stays here (as in React Aria)
+const rootAttrs = useRootAttrs()
 
 const props = defineProps<{
   size?: SwitchVariants['size']
@@ -37,7 +43,7 @@ provide(switchKey, {
     data-slot="switch"
     :class="switchVariants({ size }).base()"
     :data-selected="model || undefined"
-    v-bind="fieldStateAttrs(props)"
+    v-bind="{ ...rootAttrs(), ...fieldStateAttrs(props) }"
   >
     <slot :is-selected="model" />
   </div>
