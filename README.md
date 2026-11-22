@@ -91,10 +91,12 @@ Each of these is marked `shortcut:` in the source where it would go.
 
 ```sh
 pnpm dev        # playground with a demo per component (playground/demos); ?only=Select,Modal shows just those
-pnpm test       # mounts every demo and fails on any Vue warning; unit tests for the toast queue
+pnpm test       # mounts every demo and fails on any Vue warning; unit tests for the toast queue; builds the package and checks an app importing one component ships only that one
 pnpm typecheck
-pnpm build      # dist/index.js + type declarations
+pnpm build      # dist/: one file per module + type declarations
 ```
+
+The package is built one file per module, not as one bundle, so an app ships only the components it imports. A component is put together at the top of its module (`Object.assign(Root, { Trigger, … })`), which no bundler can prove free of effects: in a single file every component, and all of Reka UI behind them, stayed in every app. Keep `sideEffects: false` and the per-module output together; `test/tree-shaking.test.ts` fails if either goes.
 
 Releasing: bump `version` in `package.json`, commit, then
 
