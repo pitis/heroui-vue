@@ -7,7 +7,8 @@ import { useControlAttrs } from '../../utils/control-attrs'
 import { useField } from '../../utils/field'
 import { radioKey } from './context'
 
-// The clickable control + label: Reka's RadioGroupItem (role=radio, roving focus).
+// The clickable control + label: Reka's RadioGroupItem (role=radio, roving focus). A button, so
+// text-align: start, as in CheckboxContent.
 const radio = inject(radioKey)!
 const field = useField()
 const controlAttrs = useControlAttrs(() => field && `${field.value.descriptionId} ${field.value.errorId}`)
@@ -20,6 +21,7 @@ const controlAttrs = useControlAttrs(() => field && `${field.value.descriptionId
       interactive
       data-slot="radio-content"
       :class="radioVariants().content()"
+      style="text-align: start"
       v-bind="controlAttrs()"
     >
       <slot :is-selected="radio.isSelected.value" />

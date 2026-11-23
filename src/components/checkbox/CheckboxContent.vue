@@ -8,6 +8,8 @@ import { useField } from '../../utils/field'
 import { checkboxKey } from './context'
 
 // The clickable control + label. Reka's CheckboxRoot supplies role, keyboard handling and the hidden form input.
+// A button, where React Aria renders a label: text-align: start undoes the browser's centred button text,
+// which a label that wraps would otherwise show.
 const checkbox = inject(checkboxKey)!
 const field = useField()
 const controlAttrs = useControlAttrs(() => field && `${field.value.descriptionId} ${field.value.errorId}`)
@@ -28,6 +30,7 @@ const controlAttrs = useControlAttrs(() => field && `${field.value.descriptionId
       interactive
       data-slot="checkbox-content"
       :class="checkboxVariants().content()"
+      style="text-align: start"
       :aria-invalid="field?.isInvalid || undefined"
       v-bind="controlAttrs()"
     >
