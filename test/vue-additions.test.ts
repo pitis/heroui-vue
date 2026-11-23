@@ -165,6 +165,15 @@ test('id and aria-* on a Switch, Checkbox or Radio name the control inside it; t
   expect(document.querySelector('[role="radio"]')!.getAttribute('aria-label')).toBe('Option A')
 })
 
+test('a Checkbox or Radio label that wraps starts at the control, not centred like button text', async () => {
+  await render(() => [
+    h(Checkbox, () => h(Checkbox.Content, () => 'Agree')),
+    h(RadioGroup, { 'modelValue': 'a', 'aria-label': 'Group' }, () => h(Radio, { value: 'a' }, () => h(Radio.Content, () => 'A'))),
+  ])
+  for (const role of ['checkbox', 'radio'])
+    expect(document.querySelector<HTMLElement>(`[role="${role}"]`)!.style.textAlign).toBe('start')
+})
+
 test('the toast region is a polite live region before the first toast, and the toast is added to it', async () => {
   await render(() => h(Toast.Provider))
   const region = document.querySelector('[data-slot="toast-region"]')!
